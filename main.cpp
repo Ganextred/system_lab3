@@ -106,6 +106,7 @@ vector<Token> lex(const string &input) {
 
     return tokens;
 }
+
 string type_color(const enum TokenType type) {
     switch (type) {
         case TokenType::Number:
@@ -160,10 +161,24 @@ string token_type_name(enum TokenType type) {
 
 
 int main() {
-    system(("chcp "s + std::to_string(CP_UTF8)).c_str());
+    system(("chcp "s + to_string(CP_UTF8)).c_str());
 
+    ifstream inputFile("input.txt");
 
-    const vector<Token> tokens = lex(text);
+    string content;
+
+    if (inputFile.is_open()) {
+        string line;
+        while (getline(inputFile, line)) {
+            content += line + '\n';
+        }
+        inputFile.close();
+    } else {
+        cerr << "Unable to open input.txt" << endl;
+        return 1;
+    }
+
+    const vector<Token> tokens = lex(content);
 
     for (const Token &token: tokens) {
         cout << type_color(token.type) << token.value << "\033[0m";
@@ -183,10 +198,8 @@ int main() {
             if (type != TokenType::Space and type != TokenType::NewLine)
                 cout << "  " << value << " ";
         }
-        cout <<"\n";
+        cout << "\n";
     }
-
-
 
 
     return 0;
