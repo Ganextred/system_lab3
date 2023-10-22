@@ -9,42 +9,6 @@
 
 using namespace std;
 
-const string text = R"(
-using System;
-//comment example
-!
-
-namespace SampleProgram
-{
-    public class Program
-    {
-        public static void Main(string[] args)
-        {
-            int a = 42;
-            double b = 3.14;
-            string hello = "Hello, World!";
-
-            Console.WriteLine(hello);
-            Console.WriteLine("a + b = " + (a + b));
-
-            for (int i = 0; i < 5; i++)
-            {
-                Console.WriteLine(i);
-            }
-
-            if (a % 2 == 0)
-            {
-                Console.WriteLine("a is even");
-            }
-            else
-            {
-                Console.WriteLine("a is odd");
-            }
-        }
-    }
-}
-)";
-
 enum class TokenType {
     Number,
     StringLiteral,
