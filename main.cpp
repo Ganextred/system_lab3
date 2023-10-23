@@ -29,11 +29,11 @@ struct Token {
 };
 
 const vector<pair<regex, enum TokenType>> token_patterns = {
-        {regex(R"(\b\d+(\.\d+)?\b)"),                                                                                          TokenType::Number},
-        {regex(R"(\"[^\"]*\")"),                                                                                               TokenType::StringLiteral},
+        {regex(R"(\b\d+(\.\d+)?\b|0[xX][0-9a-fA-F]+|[-+]?[0-9]*\.?[0-9]+([eE][-+]?[0-9]+)?)"),                                                                                          TokenType::Number},
+        {regex(R"(\"[^\"]*\"|' ')"),                                                                                               TokenType::StringLiteral},
         {regex(R"(#[^\s]+)"),                                                                                                  TokenType::PreprocessorDirective},
         {regex(R"(\/\/[^\n]*|\/\*[\s\S]*\*\/)"),                                                                               TokenType::Comment},
-        {regex(R"(\b(class|int|float|string|using|namespace|return|if|else|while|for|continue|break|switch|case|default)\b)"), TokenType::ReservedWord},
+        {regex(R"(\b(public|class|int|float|string|using|namespace|return|if|else|while|for|continue|break|switch|case|default)\b)"), TokenType::ReservedWord},
         {regex(R"((%|\+\+|\+|\-|\/|\*|\<|\>|=|&|\||\^|\?))"),                                                                  TokenType::Operator},
         {regex(R"(([\.,;:\{\}\[\]\(\)]))"),                                                                                    TokenType::Punctuation},
         {regex(R"(\b[_a-zA-Z][\w]*)"),                                                                                         TokenType::Identifier},
